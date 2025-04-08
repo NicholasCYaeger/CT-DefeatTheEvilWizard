@@ -20,6 +20,7 @@ class Warrior(Character):
 
     def heal(self):
         self.reduce_exhaustion()
+        self.reduce_exhaustion()
         super().heal(self)
 
     def special(self, opponent):
