@@ -32,7 +32,7 @@ def create_character():
 # Battle function with user menu for actions
 def battle(player, wizard):
     while wizard.health > 0 and player.health > 0:
-        total_actions = 0
+        player.start_turn()
         print("\n--- Your Turn ---")
         print("1. Attack")
         print(f"2. {player.special_ability_a}")

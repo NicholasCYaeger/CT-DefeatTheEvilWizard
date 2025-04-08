@@ -15,7 +15,7 @@ class Paladin(Character):
         self.divine_shield(self) 
 
     def holy_strike(self, opponent):
-        damage = opponent.take_damage(self.attack_power, damage_bonus_percentage = 1.25) #Skip accuracy check
+        damage = opponent.take_damage(self.attack_power, damage_bonus_percentage = 0.25) #Skip accuracy check
         print(f"{self.name} strikes true at {opponent.name} for {damage} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")

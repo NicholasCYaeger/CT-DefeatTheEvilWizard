@@ -17,6 +17,7 @@ class Character:
         self.burning = 0
 
     def start_turn(self):
+        print(f"{self.name} starts their turn.")
         if self.burning > 0:
             fire_damage = self.take_damage(self.burning, 0, 0)
             print(f"{self.name}'s burning clothing deals {fire_damage} damage.")
