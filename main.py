@@ -63,8 +63,14 @@ def battle(player, wizard):
 
         # Evil Wizard's turn to attack and regenerate
         if wizard.health > 0:
-            wizard.regenerate()
-            wizard.attack(player)
+            if wizard.awake:
+                wizard.regenerate()
+                wizard.attack(player)
+            elif random.random() < 0.5:
+                wizard.awake = True
+                print(f"{EvilWizard.name} has woken up.")
+            else:
+                print(f"{EvilWizard.name} is still asleep.")
 
         if player.health <= 0:
             print(f"{player.name} has been defeated!")

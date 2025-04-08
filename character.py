@@ -13,6 +13,17 @@ class Character:
         self.heal_base = 0.5
         self.heal_count = 0
         self.heal_max = 6
+        self.awake = True
+        self.burning = 0
+
+    def start_turn(self):
+        if self.burning > 0:
+            fire_damage = self.take_damage(self.burning, 0, 0)
+            print(f"{self.name}'s burning clothing deals {fire_damage} damage.")
+            self.burning = math.floor(self.burning / 2)
+            if self.burning == 0:
+                print(f"The fire on {self.name}'s clothing is put out.")
+
 
     def attack(self, opponent, variance = 0.1, accuracy = 0.9, damage_bonus_percentage = 0):
         if random.random >= accuracy:
@@ -52,5 +63,7 @@ class Character:
 
     def take_damage(self, base_attack_power, variance = 0.1, damage_bonus_percentage = 0):
         damage = round(base_attack_power * random.uniform(1 - variance, 1 + variance) * (damage_bonus_percentage + 1))
+        if damage > 0 and not self.awake:
+            self.awake = True
         self.health -= damage
         return damage
