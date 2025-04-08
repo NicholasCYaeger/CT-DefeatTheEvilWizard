@@ -13,10 +13,19 @@ class Mage(Character):
     def special_b(self, opponent):
         self.sleep_spell(opponent)
 
+    def burning_spell(self, opponent, accuracy = 0.9):
+        print(f"{self.name} launches fire at {opponent.name}.")
+        if random.random() < accuracy:
+            self.attack(opponent, accuracy=1)
+            opponent.burning = random.randrange(1,20)
+        else:
+            print(f"{self.name}'s fire spell missed.")
+
     def sleep_spell(self, opponent):
+        print(f"{self.name} tries to put {opponent.name}.")
         if random.random() < 0.5:
             opponent.awake = False
-            print(f"{opponent.name} passed out asleep.")
+            print(f"{opponent.name} passes out asleep.")
         else:
             print(f"{opponent.name} pushes themself to stay awake through the spell.")
 

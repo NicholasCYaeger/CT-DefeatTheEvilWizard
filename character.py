@@ -20,13 +20,15 @@ class Character:
         if self.burning > 0:
             fire_damage = self.take_damage(self.burning, 0, 0)
             print(f"{self.name}'s burning clothing deals {fire_damage} damage.")
+            if self.health <= 0:
+                print(f"{self.name} has been defeated by fire!")
             self.burning = math.floor(self.burning / 2)
             if self.burning == 0:
                 print(f"The fire on {self.name}'s clothing is put out.")
 
 
     def attack(self, opponent, variance = 0.1, accuracy = 0.9, damage_bonus_percentage = 0):
-        if random.random >= accuracy:
+        if random.random() >= accuracy:
             print(f"{self.name} swings at {opponent.name} but misses")
             return
         damage = opponent.take_damage(self.attack_power, damage_bonus_percentage)
