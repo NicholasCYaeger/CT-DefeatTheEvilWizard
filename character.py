@@ -14,8 +14,11 @@ class Character:
         self.heal_count = 0
         self.heal_max = 6
 
-    def attack(self, opponent, variance = 0.1):
-        damage = opponent.take_damage(self.attack_power)
+    def attack(self, opponent, variance = 0.1, accuracy = 0.9, damage_bonus_percentage = 0):
+        if random.random >= accuracy:
+            print(f"{self.name} swings at {opponent.name} but misses")
+            return
+        damage = opponent.take_damage(self.attack_power, damage_bonus_percentage)
         print(f"{self.name} attacks {opponent.name} for {damage} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
@@ -47,7 +50,7 @@ class Character:
     def special_b(self, opponent):
         print("Basic Character doesn't have a special B")
 
-    def take_damage(self, base_attack_power, variance = 0.1):
-        damage = round(base_attack_power * random.uniform(1 - variance, 1 + variance))
+    def take_damage(self, base_attack_power, variance = 0.1, damage_bonus_percentage = 0):
+        damage = round(base_attack_power * random.uniform(1 - variance, 1 + variance) * (damage_bonus_percentage + 1))
         self.health -= damage
         return damage
