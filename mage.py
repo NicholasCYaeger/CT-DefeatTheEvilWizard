@@ -14,6 +14,7 @@ class Mage(Character):
         self.sleep_spell(opponent)
 
     def burning_spell(self, opponent, accuracy = 0.9):
+        '''A spell that deals damage and sets the target on fire, for more damage in later turns.'''
         print(f"{self.name} launches fire at {opponent.name}.")
         if random.random() < accuracy:
             self.attack(opponent, accuracy=1)
@@ -22,6 +23,8 @@ class Mage(Character):
             print(f"{self.name}'s fire spell missed.")
 
     def sleep_spell(self, opponent):
+        '''A spell that has a 50/50 chance to put the target to sleep. Sleeping foes won't act until awakened, 
+           either 50% chance each round, or taking damage'''
         print(f"{self.name} tries to put {opponent.name}.")
         if random.random() < 0.5:
             opponent.awake = False

@@ -3,12 +3,13 @@ from character import *
 # EvilWizard class (inherits from Character)
 class EvilWizard(Character):
     def __init__(self, name):
-        super().__init__(name, health=150, attack_power=15)  # Lower attack power
+        super().__init__(name, health=150, attack_power=10)  # Lower attack power
         self.pressure = 0
         self.crit_chance = 0.1
 
     def start_turn(self):
         self.pressure += 5
+        print(f"{self.name} applies pressure: {self.pressure + self.attack_power}")
         super().start_turn()
 
     def attack(self, opponent, variance = 0.1, accuracy = 0.9, damage_bonus_percentage = 0):
