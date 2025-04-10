@@ -42,8 +42,6 @@ class Character:
             return
         damage = opponent.take_damage(self.attack_power, damage_bonus_percentage)
         print(f"{self.name} attacks {opponent.name} for {damage} damage!")
-        if opponent.health <= 0:
-            print(f"{opponent.name} has been defeated!")
 
     def display_stats(self):
         '''Display current player's Health and Attack Power'''

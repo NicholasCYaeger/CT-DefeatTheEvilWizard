@@ -3,7 +3,7 @@ from character import *
 # Archer class (inherits from Character)
 class Archer(Character):
     def __init__(self, name):
-        super().__init__(name, health=120, attack_power=25)  # Boost health and attack power
+        super().__init__(name, health=120, attack_power=30)  # Boost health and attack power
         self.special_ability_a = "Quick Shot"
         self.special_ability_b = "Evade"
 

@@ -13,10 +13,15 @@ class EvilWizard(Character):
         super().start_turn()
 
     def attack(self, opponent, variance = 0.1, accuracy = 0.9, damage_bonus_percentage = 0):
-        crit_bonus = 0
+        '''Overwritten to account for the Evil Wizard's critical hits'''
+        if opponent.evasion:
+            print(f"{opponent.name} evades {self.name}'s attack")
+            opponent.evasion = False
+            return
         if random.random() >= accuracy:
             print(f"{self.name} swings at {opponent.name} but misses")
             return
+        crit_bonus = 0
         if random.random() < self.crit_chance:
             crit_bonus = 1
         damage = opponent.take_damage(self.attack_power + self.pressure, variance, damage_bonus_percentage + crit_bonus)
@@ -24,8 +29,6 @@ class EvilWizard(Character):
             print(f"{self.name} attacks {opponent.name} for {damage} damage!")
         else:
             print(f"{self.name} attacks {opponent.name} critically for {damage} damage!")
-        if opponent.health <= 0:
-            print(f"{opponent.name} has been defeated!")
 
     # Evil Wizard's special ability: it can regenerate health
     def regenerate(self):
