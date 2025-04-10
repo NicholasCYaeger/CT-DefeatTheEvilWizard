@@ -4,7 +4,7 @@ import random
 # Warrior class (inherits from Character)
 class Warrior(Character):
     def __init__(self, name):
-        super().__init__(name, health=140, attack_power=25)  # Boost health and attack power
+        super().__init__(name, health=150, attack_power=25)  # Boost health and attack power
         self.exhaustion = 0
         self.parrying = False
         self.special_ability_a = "Power Attack"
@@ -21,9 +21,12 @@ class Warrior(Character):
 
     def heal(self):                                                                         #overwrite heal(s)
         '''Overwrite heal to reduce exhaustion twice when used'''
-        self.reduce_exhaustion()
-        self.reduce_exhaustion()
-        super().heal()
+        heal_exhuasted = super().heal()
+        if not heal_exhuasted:
+            self.reduce_exhaustion()
+            self.reduce_exhaustion()
+            print(f"{self.name} recovered from exhaustion faster.")
+        return heal_exhuasted
 
     def special(self, opponent):
         self.power_attack(opponent)
@@ -37,9 +40,7 @@ class Warrior(Character):
             self.attack_power * 2 * (1 - self.exhaustion), 0.1
         )
         self.exhaustion = min(self.exhaustion + 0.25, 0.75)
-        print(f"{self.name} pushes themself, attacking {opponent.name} for {damage} damage! (Exhaustion @ {self.exhaustion})")
-        if opponent.health <= 0:
-            print(f"{opponent.name} has been defeated!")
+        print(f"{self.name} pushes themself, attacking {opponent.name} for {damage} damage, but exhausting themself!")
 
     def parrying_attack(self, opponent):                                                    
         '''A special attack that deals reduced damage, but halves the damage taken next time the Warrior is attacked'''

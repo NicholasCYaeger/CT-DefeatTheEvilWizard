@@ -50,7 +50,11 @@ class Character:
         )
 
     def heal(self):
-        '''Recover health. Starts at 75% of max health, but reduces by 1/6 each use. Don't heal over damage taken'''
+        '''Recover health. Starts at 75% of max health, but reduces by 1/6 each use. Don't heal over damage taken. 
+            Return True if the healing ability is exhausted or False if not'''
+        if(self.heal_count >= self.heal_max ):
+            print(f"{self.name}'s healing ability is exhausted.")
+            return True
         base_heal_value = round(
             (
                 (self.max_health * self.heal_base)
@@ -64,6 +68,7 @@ class Character:
         print(
             f"{self.name} recovers {heal_value} health! ({self.health}/{self.max_health})"
         )
+        return False
 
     def special(self, opponent):
         '''First special ability'''

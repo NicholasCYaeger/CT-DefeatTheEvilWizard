@@ -50,7 +50,9 @@ def battle(player, wizard):
             elif choice == 3:
                 player.special_b(wizard)
             elif choice == 4:
-                player.heal()
+                heal_exhausted = player.heal()
+                if heal_exhausted:
+                    continue
             elif choice == 5:
                 player.display_stats()
                 continue
