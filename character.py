@@ -31,7 +31,8 @@ class Character:
 
     def attack(self, opponent, variance = 0.1, accuracy = 0.9, damage_bonus_percentage = 0):
         '''Make a simple attack. Varies by variance up or down. Has chance of hitting by accuracy (/1). 
-           The damage increases by the damage_bonus_percentage (*[1+dbp]). Also allows for evasion'''
+           The damage increases by the damage_bonus_percentage (*[1+dbp]). 
+           Also allows for evade (Archer Ability) to make the next attack miss (no check)'''
         if opponent.evasion:
             print(f"{opponent.name} evades {self.name}'s attack")
             opponent.evasion = False
